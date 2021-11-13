@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useContext, useEffect } from "react";
 import {
   View,
@@ -45,11 +46,31 @@ const IndexScreen = ({ navigation }) => {
               </View>
             </TouchableOpacity>
           );
+=======
+import React, { useContext } from "react";
+import { View, Text, StyleSheet, FlatList, Button } from "react-native";
+import BlogContext from "../context/BlogContext";
+
+const IndexScreen = () => {
+  [data, addBlogPost] = useContext(BlogContext);
+  console.log(blogPosts);
+
+  return (
+    <View>
+      <Text>Index screen</Text>
+      <Button title="Add Post" onPress={addBlogPosts} />
+      <FlatList
+        data={data}
+        keyExtractor={(blogPost) => blogPost.title}
+        renderItem={({ item }) => {
+          return <Text>{item.title}</Text>;
+>>>>>>> a0731a5a26423ffecf90021584af56b59201011c
         }}
       />
     </View>
   );
 };
+<<<<<<< HEAD
 
 IndexScreen.navigationOptions = ({ navigation }) => {
   return {
@@ -78,4 +99,7 @@ const styles = StyleSheet.create({
   },
 });
 
+=======
+const styles = StyleSheet.create({});
+>>>>>>> a0731a5a26423ffecf90021584af56b59201011c
 export default IndexScreen;

@@ -1,4 +1,5 @@
 import createDataContext from "./createDataContext";
+<<<<<<< HEAD
 import jsonServer from "../api/jsonServer";
 
 const blogReducer = (state, action) => {
@@ -58,3 +59,41 @@ export const { Context, Provider } = createDataContext(
   { addBlogPost, deleteBlogPost, editBlogPost, getBlogPosts },
   [] //initial post for testing like: { title: "TEST POST", content: "Test Content", id: 1 }
 );
+=======
+
+const blogReducer = (state,action)=>{
+  switch(action.type){
+    case "add_blogpost":
+      return [...state,
+        {
+        id:Math.floor(Math.random()*999999),
+        title:action.payload.title,
+        content:action.payload.content}
+    ];
+
+    case "delete_blogpost":
+      return state.filter((blogPost) => blogPost.id !== action.payload ); //filter out the one im pressing
+
+
+    // case "edit_blogpost":
+    //   return;
+      default:
+        return state;
+  }
+};
+
+const addBlogPost = dispatch => {
+  return (title,content,callback)=>{
+    dispatch({type:"add_blogpost",payload:{title,content}});
+    callback(); //going back to index.js(after sucssefully create)
+  };
+};
+
+const deleteBlogPost = dispatch => {
+  return (id)=>{
+    dispatch({type:"delete_blogpost",payload: id});
+  };
+};
+
+export const {Context,Provider} = createDataContext(blogReducer ,{addBlogPost,deleteBlogPost}, []);
+>>>>>>> a0731a5a26423ffecf90021584af56b59201011c
